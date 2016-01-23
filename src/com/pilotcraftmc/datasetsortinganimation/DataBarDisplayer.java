@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetutils;
+package com.pilotcraftmc.datasetsortinganimation;
 
 import java.awt.Color;
 import java.awt.Dimension;

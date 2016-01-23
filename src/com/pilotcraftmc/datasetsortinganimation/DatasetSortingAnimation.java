@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetutils;
+package com.pilotcraftmc.datasetsortinganimation;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
-public class DatasetUtils {
+public class DatasetSortingAnimation {
 
 	/**
 	 * Launch the application.

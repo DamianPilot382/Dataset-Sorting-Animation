@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetutils;
+package com.pilotcraftmc.datasetsortinganimation;
 
 import javax.swing.JPanel;
 
