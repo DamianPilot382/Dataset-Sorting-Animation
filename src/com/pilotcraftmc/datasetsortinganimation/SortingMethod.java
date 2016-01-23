@@ -1,5 +1,8 @@
 package com.pilotcraftmc.datasetsortinganimation;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class SortingMethod {
@@ -39,12 +42,7 @@ public class SortingMethod {
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
-	
-	
-	
-	
-	
-	
+
 	public static void mergeSort(int[] arr, JPanel panel, int ms) {
 		int[] tmp = new int[arr.length];
 		mergeSort(arr, panel, ms, tmp, 0, arr.length - 1);
@@ -84,12 +82,6 @@ public class SortingMethod {
 			arr[rightEnd] = tmp[rightEnd];
 	}
 
-	
-	
-	
-	
-	
-	
 	public static void bubbleSort(int[] arr, JPanel panel, int ms) {
 		int n = arr.length;
 		int temp = 0;
@@ -110,9 +102,20 @@ public class SortingMethod {
 
 	}
 	
-	
-	
-	
+	public static void insertionSort(int arr[], JPanel panel, int ms) {
+        int n = arr.length;
+        for (int j = 1; j < n; j++) {
+            int key = arr[j];
+            int i = j-1;
+            while ( (i > -1) && ( arr[i] > key ) ) {
+                arr[i+1] = arr[i];
+                i--;
+            }
+            arr[i+1] = key;
+            panel.repaint();
+            sleep(ms);
+        }
+    }
 
 	public static void sleep(int ms) {
 		try {

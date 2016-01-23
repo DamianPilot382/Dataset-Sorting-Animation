@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class DataBarDisplayer extends JPanel {
+public class DataBarDisplayer extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -16,13 +16,13 @@ public class DataBarDisplayer extends JPanel {
 	public int[] arr;
 	public int maxValue;
 	
-	public DataBarDisplayer(int width, int height, int[] arr) {
+	public DataBarDisplayer(int width, int height, int[] arr){
 		this.width = width;
 		this.height = height;
 		this.arr = arr;
 		
 		maxValue = Integer.MIN_VALUE;
-		for (int i : arr) {
+		for (int i : arr){
 			if (i > maxValue)
 				maxValue = i;
 		}
@@ -32,29 +32,49 @@ public class DataBarDisplayer extends JPanel {
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.WHITE);
 		
 		final int BAR_WIDTH = (int)((double)width / arr.length) - SPACING;
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length; i++){
 			int y = (int)((double)arr[i]/maxValue*height);
 			g2d.fillRect((int)((double)i*(BAR_WIDTH+SPACING)), height-y, BAR_WIDTH, y);
 		}
 	}
 	
-	public void quickSort(int ms) {
+	/**
+	 * 
+	 * @param ms milliseconds between updates
+	 */
+	public void quickSort(int ms){
 		SortingMethod.quickSort(arr, this, ms);
 	}
 	
-	public void mergeSort(int ms) {
+	/**
+	 * 
+	 * @param ms milliseconds between updates
+	 */
+	public void mergeSort(int ms){
 		SortingMethod.mergeSort(arr, this, ms);
 	}
 	
+	/**
+	 * 
+	 * @param ms milliseconds between updates
+	 */
 	public void bubbleSort(int ms){
 		SortingMethod.bubbleSort(arr, this, ms);
+	}
+	
+	/**
+	 * 
+	 * @param ms milliseconds between updates
+	 */
+	public void insertionSort(int ms){
+		SortingMethod.insertionSort(arr,this, ms);
 	}
 	
 }
