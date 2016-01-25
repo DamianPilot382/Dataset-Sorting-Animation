@@ -1,9 +1,6 @@
 package com.pilotcraftmc.datasetsortinganimation;
 
-import java.awt.List;
-import java.awt.Panel;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import javax.swing.JPanel;

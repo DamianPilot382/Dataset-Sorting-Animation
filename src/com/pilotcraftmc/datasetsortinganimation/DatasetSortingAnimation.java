@@ -4,45 +4,54 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 public class DatasetSortingAnimation {
-
+	
+	public static final Object[] methodList = {"Mergesort", "Quicksort", "Bubblesort", "Insertionsort", "Bozosort", "Bogosort"};
+	
 	/**
 	 * Launch the application.
 	 * 
 	 * @throws InterruptedException
 	 */
 	public static void main(String[] args) throws InterruptedException{
-
+		
 		JFrame frame = initialize();
 		int width = frame.getWidth();
 		int height = frame.getHeight();
 		
+		int in = JOptionPane.showOptionDialog(null, "Sorting Methods : ", "Sorting Methods", JOptionPane.DEFAULT_OPTION, 
+												JOptionPane.PLAIN_MESSAGE, null, methodList, methodList[0]);
+		String msInput;
+		do {
+			msInput = JOptionPane.showInputDialog("Enter milliseconds delay: ");
+		} while(!isInteger(msInput));
+		int ms = Integer.valueOf(msInput);
+		
+		boolean rainbow = JOptionPane.showOptionDialog(null, "Rainbow?", "Rainbow", JOptionPane.YES_NO_OPTION, 
+														JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Yes", "No"}, "Yes") == 0;
+		String sizeInput;
+		do {
+			sizeInput = JOptionPane.showInputDialog("Enter size of the array: ");
+		} while(!isInteger(sizeInput));
+		int size = Integer.valueOf(sizeInput);
 		
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		int size = 21;
-		for(int i = 1; i <= size; i++){
+		for(int i = 1; i <= size; i++)
 			list.add(i);
-		}
 		Collections.shuffle(list);
 		int[] arr = new int[size];
-		for(int i = 0; i < size; i++){
+		for(int i = 0; i < size; i++)
 			arr[i] = list.get(i);
-		}
 		
-		
-		DataBarDisplayer dbd = new DataBarDisplayer(width, height, arr);
+		DataBarDisplayer dbd = new DataBarDisplayer(width, height, arr, rainbow);
 		dbd.setFocusable(true);
-		dbd.addKeyListener(new KeyListener(){
+		dbd.addKeyListener(new KeyListener() {
 			@Override
-			public void keyPressed(KeyEvent e){
+			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_Q)
 					System.exit(0);
 			}
@@ -54,50 +63,33 @@ public class DatasetSortingAnimation {
 		dbd.setVisible(true);
 		frame.getContentPane().add(dbd);
 		
-		System.out.println("Sorts:");
-		System.out.println("1. Mergesort\n2. Quicksort\n3. Bubblesort\n4. Insertionsort\n5. Bozosort\n6. Bogosort");
-		System.out.print("Select sorting algorithm number: ");
-		int in = 0;
-		int ms = 0;
-		try{
-			Scanner input = new Scanner(System.in);
-			in = input.nextInt();
-			System.out.print("Enter millisecond delay: ");
-			ms = input.nextInt();
-		}catch(Exception e){
-			System.out.println("Invalid");
-			Thread.sleep(1000);
-			System.exit(0);
-		}
 		frame.setVisible(true);
 
 		Thread.sleep(1000);
-		switch(in){
+		switch(in) {
+			case 0:
+				dbd.mergeSort(ms); break;
 			case 1:
-				dbd.mergeSort(ms);
-				break;
+				dbd.quickSort(ms); break;
 			case 2:
-				dbd.quickSort(ms);
-				break;
+				dbd.bubbleSort(ms); break;
 			case 3:
-				dbd.bubbleSort(ms);
-				break;
+				dbd.insertionSort(ms); break;
 			case 4:
-				dbd.insertionSort(ms);
-				break;
+				dbd.bozoSort(ms); break;
 			case 5:
-				dbd.bozoSort(ms);
-			case 6:
-				dbd.bogoSort(ms);
-			default:
-				System.out.println("Invalid");
-				Thread.sleep(1000);
-				System.exit(0);
-				break;
-		};
+				dbd.bogoSort(ms); break;
+		}
 		
-		System.out.println("Done!");
-		
+	}
+	
+	private static boolean isInteger(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (!(Character.isDigit(c) || c == '-'))
+				return false;
+		}
+		return true;
 	}
 
 	/**
