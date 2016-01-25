@@ -1,7 +1,10 @@
 package com.pilotcraftmc.datasetsortinganimation;
 
 import java.awt.List;
+import java.awt.Panel;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JPanel;
 
@@ -18,12 +21,13 @@ public class SortingMethod {
 		int pivot = arr[low + (high - low) / 2];
 
 		while (i <= j) {
-			while (arr[i] < pivot)
+			while (arr[i] < pivot) {
 				i++;
+			}
 
-			while (arr[j] > pivot)
+			while (arr[j] > pivot) {
 				j--;
-
+			}
 			if (i <= j) {
 				exchange(arr, i, j);
 				i++;
@@ -101,21 +105,63 @@ public class SortingMethod {
 		}
 
 	}
-	
+
 	public static void insertionSort(int arr[], JPanel panel, int ms) {
-        int n = arr.length;
-        for (int j = 1; j < n; j++) {
-            int key = arr[j];
-            int i = j-1;
-            while ( (i > -1) && ( arr[i] > key ) ) {
-                arr[i+1] = arr[i];
-                i--;
-            }
-            arr[i+1] = key;
-            panel.repaint();
-            sleep(ms);
-        }
-    }
+		int n = arr.length;
+		for (int j = 1; j < n; j++) {
+			int key = arr[j];
+			int i = j - 1;
+			while ((i > -1) && (arr[i] > key)) {
+				arr[i + 1] = arr[i];
+				i--;
+			}
+			arr[i + 1] = key;
+			panel.repaint();
+			sleep(ms);
+		}
+	}
+
+	public static boolean isSorted(int[] arr) {
+		for (int i = 0; i < arr.length - 1; i++) {
+			if (arr[i] > arr[i + 1])
+				return false;
+		}
+		return true;
+	}
+
+	public static int[] bozoSort(int[] arr, JPanel panel, int ms) {
+		while (!isSorted(arr)) {
+			int i1 = (int) (Math.random() * arr.length);
+			int i2 = (int) (Math.random() * arr.length);
+			while (i1 == i2)
+				i2 = (int) (Math.random() * arr.length);
+
+			int temp = arr[i1];
+			arr[i1] = arr[i2];
+			arr[i2] = temp;
+
+			panel.repaint();
+			sleep(ms);
+		}
+			return arr;
+	}
+	
+	public static int[] bogoSort(int[] arr, JPanel panel, int ms){
+		while(!isSorted(arr)){
+			ArrayList<Integer> list = new ArrayList<Integer>(arr.length);
+			for(int s : arr){
+				list.add(s);
+			}
+			Collections.shuffle(list);
+			for(int i = 0; i < arr.length; i++){
+				arr[i] = list.get(i);
+			}
+			panel.repaint();
+			sleep(ms);
+		}
+		
+			return arr;
+	}
 
 	public static void sleep(int ms) {
 		try {

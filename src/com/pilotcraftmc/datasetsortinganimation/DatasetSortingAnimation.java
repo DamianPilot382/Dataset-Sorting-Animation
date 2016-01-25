@@ -19,7 +19,7 @@ public class DatasetSortingAnimation {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException{
 
 		JFrame frame = initialize();
 		int width = frame.getWidth();
@@ -27,7 +27,7 @@ public class DatasetSortingAnimation {
 		
 		
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		int size = 200;
+		int size = 21;
 		for(int i = 1; i <= size; i++){
 			list.add(i);
 		}
@@ -55,7 +55,7 @@ public class DatasetSortingAnimation {
 		frame.getContentPane().add(dbd);
 		
 		System.out.println("Sorts:");
-		System.out.println("1. Mergesort\n2. Quicksort\n3. Bubblesort\n4. Insertionsort");
+		System.out.println("1. Mergesort\n2. Quicksort\n3. Bubblesort\n4. Insertionsort\n5. Bozosort\n6. Bogosort");
 		System.out.print("Select sorting algorithm number: ");
 		int in = 0;
 		int ms = 0;
@@ -85,6 +85,10 @@ public class DatasetSortingAnimation {
 			case 4:
 				dbd.insertionSort(ms);
 				break;
+			case 5:
+				dbd.bozoSort(ms);
+			case 6:
+				dbd.bogoSort(ms);
 			default:
 				System.out.println("Invalid");
 				Thread.sleep(1000);
