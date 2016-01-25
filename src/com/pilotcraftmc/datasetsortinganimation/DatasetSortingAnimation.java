@@ -10,12 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class DatasetSortingAnimation {
 	
-	public static final Object[] methodList = {"Mergesort", "Quicksort", "Bubblesort", "Insertionsort", "Bozosort", "Bogosort"};
 	
 	/**
 	 * Launch the application.
 	 * 
 	 * @throws InterruptedException
+	 * 				If the main thread is interrupted while sleeping.
 	 */
 	public static void main(String[] args) throws InterruptedException{
 		
@@ -23,8 +23,9 @@ public class DatasetSortingAnimation {
 		int width = frame.getWidth();
 		int height = frame.getHeight();
 		
-		int in = JOptionPane.showOptionDialog(null, "Sorting Methods : ", "Sorting Methods", JOptionPane.DEFAULT_OPTION, 
-												JOptionPane.PLAIN_MESSAGE, null, methodList, methodList[0]);
+		int index = JOptionPane.showOptionDialog(null, "Sorting Methods : ", "Sorting Methods", JOptionPane.DEFAULT_OPTION, 
+													JOptionPane.PLAIN_MESSAGE, null, DataBarDisplayer.SORTING_METHOD_NAMES, 
+														DataBarDisplayer.SORTING_METHOD_NAMES[0]);
 		String msInput;
 		do {
 			msInput = JOptionPane.showInputDialog("Enter milliseconds delay: ");
@@ -32,7 +33,9 @@ public class DatasetSortingAnimation {
 		int ms = Integer.valueOf(msInput);
 		
 		boolean rainbow = JOptionPane.showOptionDialog(null, "Rainbow?", "Rainbow", JOptionPane.YES_NO_OPTION, 
-														JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Yes", "No"}, "Yes") == 0;
+														JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Yes", "No"}, 
+															"Yes") == 0;
+		
 		String sizeInput;
 		do {
 			sizeInput = JOptionPane.showInputDialog("Enter size of the array: ");
@@ -66,21 +69,7 @@ public class DatasetSortingAnimation {
 		frame.setVisible(true);
 
 		Thread.sleep(1000);
-		switch(in) {
-			case 0:
-				dbd.mergeSort(ms); break;
-			case 1:
-				dbd.quickSort(ms); break;
-			case 2:
-				dbd.bubbleSort(ms); break;
-			case 3:
-				dbd.insertionSort(ms); break;
-			case 4:
-				dbd.bozoSort(ms); break;
-			case 5:
-				dbd.bogoSort(ms); break;
-		}
-		
+		dbd.sort(index, ms);
 	}
 	
 	private static boolean isInteger(String str) {

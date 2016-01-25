@@ -7,11 +7,20 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import com.pilotcraftmc.datasetsortinganimation.sortingmethods.*;
+
 public class DataBarDisplayer extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SPACING = 2;
+	public static final SortingMethod[] SORTING_METHODS = {new QuickSort(), new MergeSort(), new InsertionSort(), new BozoSort(), new BogoSort()};
+	public static final Object[] SORTING_METHOD_NAMES;
+	static {
+		SORTING_METHOD_NAMES = new Object[SORTING_METHODS.length];
+		for (int i = 0; i < SORTING_METHODS.length; i++)
+			SORTING_METHOD_NAMES[i] = SORTING_METHODS[i].getName();
+	}
+	
 	public final int width, height;
 	public int[] arr;
 	public int maxValue;
@@ -39,56 +48,22 @@ public class DataBarDisplayer extends JPanel{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		
-		final int BAR_WIDTH = (int)((double)width / arr.length) - SPACING;
+		final double BAR_WIDTH = (double)width / arr.length;
+		final int SPACING = (BAR_WIDTH/2 >= 1 ? 1 : 0);
 		for (int i = 0; i < arr.length; i++){
-			if(rainbow){
-				g2d.setColor(Color.getHSBColor((float)i/arr.length, 1, 1));//colorArray[i]);
-			}else{
-				g2d.setColor(Color.WHITE);
-			}
-			int y = (int)((double)arr[i]/maxValue*height);
-			g2d.fillRect((int)((double)i*(BAR_WIDTH+SPACING)), height-y, BAR_WIDTH, y);
+			g2d.setColor(rainbow ? Color.getHSBColor((float)i/arr.length, 1, 1) : Color.WHITE);
+			double y = (double)arr[i] * height / maxValue;
+			g2d.fillRect(i*(int)BAR_WIDTH, (int)(height-y), (int)Math.max(BAR_WIDTH-SPACING, 1), (int)y);
 		}
 	}
 	
 	/**
 	 * 
-	 * @param ms milliseconds between updates
+	 * @param index
+	 * @param ms
 	 */
-	public void quickSort(int ms){
-		SortingMethod.quickSort(arr, this, ms);
-	}
-	
-	/**
-	 * 
-	 * @param ms milliseconds between updates
-	 */
-	public void mergeSort(int ms){
-		SortingMethod.mergeSort(arr, this, ms);
-	}
-	
-	/**
-	 * 
-	 * @param ms milliseconds between updates
-	 */
-	public void bubbleSort(int ms){
-		SortingMethod.bubbleSort(arr, this, ms);
-	}
-	
-	/**
-	 * 
-	 * @param ms milliseconds between updates
-	 */
-	public void insertionSort(int ms){
-		SortingMethod.insertionSort(arr,this, ms);
-	}
-	
-	public void bozoSort(int ms){
-		SortingMethod.bozoSort(arr, this, ms);
-	}
-	
-	public void bogoSort(int ms){
-		SortingMethod.bogoSort(arr, this, ms);
+	public void sort(int index, int ms) {
+		SORTING_METHODS[index].sort(this, ms, arr);
 	}
 	
 }
