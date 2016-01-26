@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetsortinganimation.sortingmethods;
+package com.pilotcraftmc.sortinggrapher.sortingmethods;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetsortinganimation.sortingmethods;
+package com.pilotcraftmc.sortinggrapher.sortingmethods;
 
 import java.util.ArrayList;
 import java.util.Collections;

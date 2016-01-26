@@ -1,4 +1,4 @@
-package com.pilotcraftmc.datasetsortinganimation;
+package com.pilotcraftmc.sortinggrapher;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -8,17 +8,29 @@ import java.util.Collections;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-public class DatasetSortingAnimation {
-	
+
+/**
+ * The {@code SortingGrapher} class is the main class of the application.
+ * <p>
+ * It initializes the {@code JFrame} and prompts the user for input.
+ * </p>
+ * <p>
+ * This class is <b>not</b> thread-safe and will throw an {@code InterruptedException} if interrupted.
+ * </p>
+ * 
+ * @author Leon Montealegre
+ * @author Damian Ugalde
+ * @version 0.05
+ */
+public class SortingGrapher {
 	
 	/**
-	 * Launch the application.
+	 * Launches the application.
 	 * 
-	 * @throws InterruptedException
+	 * @throws 	InterruptedException
 	 * 				If the main thread is interrupted while sleeping.
 	 */
 	public static void main(String[] args) throws InterruptedException{
-		
 		JFrame frame = initialize();
 		int width = frame.getWidth();
 		int height = frame.getHeight();
@@ -53,14 +65,11 @@ public class DatasetSortingAnimation {
 		DataBarDisplayer dbd = new DataBarDisplayer(width, height, arr, rainbow);
 		dbd.setFocusable(true);
 		dbd.addKeyListener(new KeyListener() {
-			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_Q)
 					System.exit(0);
 			}
-			@Override
 			public void keyReleased(KeyEvent e) {}
-			@Override
 			public void keyTyped(KeyEvent e) {}
 		});
 		dbd.setVisible(true);
@@ -72,6 +81,19 @@ public class DatasetSortingAnimation {
 		dbd.sort(index, ms);
 	}
 	
+	/**
+	 * Determines if the specified String is an integer.
+	 * <p>
+	 * A String is an integer if every character is a number between 0-9
+	 * or a - symbol.
+	 * </p>
+	 * 
+	 * @param	str
+	 * 				The String to be tested.
+	 * 
+	 * @return	{@code true} if the given String was an integer,
+	 * 				{@code false} otherwise.
+	 */
 	private static boolean isInteger(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
@@ -82,7 +104,9 @@ public class DatasetSortingAnimation {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame.
+	 * 
+	 * @return	A default JFrame.
 	 */
 	private static JFrame initialize(){
 		JFrame frame = new JFrame();

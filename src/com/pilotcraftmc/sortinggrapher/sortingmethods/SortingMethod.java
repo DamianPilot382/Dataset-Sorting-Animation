@@ -1,7 +1,22 @@
-package com.pilotcraftmc.datasetsortinganimation.sortingmethods;
+package com.pilotcraftmc.sortinggrapher.sortingmethods;
 
 import javax.swing.JPanel;
 
+/**
+ * The {@code SortingMethod} class is an abstract class to represent each sorting method in the application.
+ * <p>
+ * It also provides some utilities for each sorting method such as
+ * <ul>
+ * <li>Checking if an array is sorted.</li>
+ * <li>Swapping two elements in an array.</li>
+ * <li>Repainting and thread-safely sleeping the given interval.</li>
+ * </ul>
+ * </p>
+ * 
+ * @author Leon Montealegre
+ * @author Damian Ugalde
+ * @version 0.01
+ */
 public abstract class SortingMethod {
 	
 	protected SortingMethod() {}
@@ -9,7 +24,7 @@ public abstract class SortingMethod {
 	public abstract void sort(JPanel panel, int ms, int[] arr);
 	
 	public String getName() {
-		return this.getClass().getName();
+		return this.getClass().getSimpleName();
 	}
 	
 	protected static boolean isSorted(int[] arr) {
