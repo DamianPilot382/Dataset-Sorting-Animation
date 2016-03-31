@@ -2,6 +2,8 @@ package com.pilotcraftmc.sortinggrapher.sortingmethods;
 
 import javax.swing.JPanel;
 
+import com.pilotcraftmc.sortinggrapher.Tone;
+
 /**
  * The {@code SortingMethod} class is an abstract class to represent each sorting method in the application.
  * <p>
