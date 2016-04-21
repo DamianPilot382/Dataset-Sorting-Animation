@@ -17,8 +17,11 @@ public class QuickSort extends SortingMethod {
 		while (i <= j) {
 			while (arr[i] < pivot) i++;
 			while (arr[j] > pivot) j--;
-			if (i <= j)
-				swap(arr, i++, j--);
+			if (i <= j){
+				swap(arr, i, j);
+				i++;
+				j--;
+			}
 		}
 
 		if (low < j)

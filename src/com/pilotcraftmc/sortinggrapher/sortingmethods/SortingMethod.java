@@ -21,6 +21,8 @@ import com.pilotcraftmc.sortinggrapher.Tone;
  */
 public abstract class SortingMethod {
 	
+	public static int count = 0;
+	
 	protected SortingMethod() {}
 	
 	public abstract void sort(JPanel panel, int ms, int[] arr);
@@ -47,6 +49,7 @@ public abstract class SortingMethod {
 		panel.repaint();
 		try {
 			Thread.sleep(ms);
+			count++;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

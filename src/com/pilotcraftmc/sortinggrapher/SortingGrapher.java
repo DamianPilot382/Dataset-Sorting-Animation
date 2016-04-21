@@ -3,11 +3,14 @@ package com.pilotcraftmc.sortinggrapher;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.pilotcraftmc.sortinggrapher.sortingmethods.SortingMethod;
 
 /**
  * The {@code SortingGrapher} class is the main class of the application.
@@ -78,7 +81,17 @@ public class SortingGrapher {
 		frame.setVisible(true);
 
 		Thread.sleep(1000);
+		long now = System.currentTimeMillis();
+		frame.setTitle(DataBarDisplayer.SORTING_METHOD_NAMES[index] + " | Size: " + size);
 		dbd.sort(index, ms);
+		long then = System.currentTimeMillis();
+		
+		long delayAdjustment = SortingMethod.count*ms;
+		double time = (then - now - delayAdjustment) / 1.0;
+		frame.setTitle(DataBarDisplayer.SORTING_METHOD_NAMES[index] +
+				" | completed in: " +
+				new DecimalFormat("##.#").format(time)
+				+ " ms" + " | Size: " + size);
 	}
 	
 	/**

@@ -13,6 +13,7 @@ import com.pilotcraftmc.sortinggrapher.sortingmethods.BubbleSort;
 import com.pilotcraftmc.sortinggrapher.sortingmethods.InsertionSort;
 import com.pilotcraftmc.sortinggrapher.sortingmethods.MergeSort;
 import com.pilotcraftmc.sortinggrapher.sortingmethods.QuickSort;
+import com.pilotcraftmc.sortinggrapher.sortingmethods.RadixSort;
 import com.pilotcraftmc.sortinggrapher.sortingmethods.ShellSort;
 import com.pilotcraftmc.sortinggrapher.sortingmethods.SortingMethod;
 
@@ -33,7 +34,7 @@ public class DataBarDisplayer extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static final SortingMethod[] SORTING_METHODS = {new QuickSort(), new MergeSort(), new InsertionSort(), new BozoSort(), new BogoSort(), new BubbleSort(), new ShellSort()};
+	public static final SortingMethod[] SORTING_METHODS = {new RadixSort(), new QuickSort(), new MergeSort(), new InsertionSort(), new BozoSort(), new BogoSort(), new BubbleSort(), new ShellSort()};
 	public static final Object[] SORTING_METHOD_NAMES;
 	static {
 		SORTING_METHOD_NAMES = new Object[SORTING_METHODS.length];
@@ -73,7 +74,7 @@ public class DataBarDisplayer extends JPanel {
 				maxValue = i;
 		}
 		
-		this.setSize(new Dimension(width, height));
+		this.setSize(new Dimension(width, height)); 
 		this.setBackground(Color.BLACK);
 				
 	}
